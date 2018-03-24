@@ -52,7 +52,7 @@
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]> <script src="{{ SITEURL }}/theme/js/html5.js"></script> <![endif]-->
     <!-- Le styles -->
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {# Comment this out until I fix the BundleError:
     #}
     {% assets output="css/final-%(version)s.css", "css/fontello.css", "css/main.css", "css/pygments-monokai.css" %}
@@ -100,27 +100,28 @@
 
 <body>
     <header class="blog-header hidden-print">
-        <div class="container">
-            <div class="row-fluid">
-                <div class="span8"><a href="{{ SITEURL }}" class="brand">{{SITENAME}}</a></div>
-                <div class="span4" id="blog-nav">
-                    <ul class="nav nav-pills pull-right">
-                    {% if HEADER_LINKS %}
-                        {% for anchor_text, name, link in HEADER_LINKS %}
-                            <li><a href="{{ link }}">{% if name %}<i class="icon-{{ name }}"></i>{% endif %}{{anchor_text}}</a></li>
-                        {% endfor %}
-                    {% endif %}
-                    {% if DISPLAY_PAGES_ON_MENU %}
-                        {% for page in PAGES %}
-                            <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
-                        {% endfor %}
-                    {% endif %}
-                    {% for cat, null in categories %}
-                        <li {% if cat == category %} class="active" {% endif %}>
-                        <a href="{{ SITEURL }}/{{ cat.url }} ">{{ cat }}</a>
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><a href="{{ SITEURL }}" class="brand">{{SITENAME}}</a>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <ul class="nav nav-pills pull-right">
+                {% if HEADER_LINKS %}
+                    {% for anchor_text, name, link in HEADER_LINKS %}
+                        <li><a href="{{ link }}">{% if name %}<i class="icon-{{ name }}"></i>{% endif %}{{anchor_text}}</a></li>
                     {% endfor %}
-                    </ul>
-                </div>
+                {% endif %}
+                {% if DISPLAY_PAGES_ON_MENU %}
+                    {% for page in PAGES %}
+                        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                {% for cat, null in categories %}
+                    <li {% if cat == category %} class="active" {% endif %}>
+                    <a href="{{ SITEURL }}/{{ cat.url }} ">{{ cat }}</a>
+                {% endfor %}
+                </ul>
+              </div>
             </div> {# End of fluid row #}
         </div> {# End of Container #}
     </header>
@@ -128,7 +129,7 @@
     <div class="container">
         <div class="content">
             <div class="row-fluid">
-                <div class="span11">
+                <div class="col-md-11">
                     {% block content %}{% endblock %}
                 </div>
             </div> {# End row #}
@@ -137,8 +138,9 @@
 
     {% include "footer.html" %}
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     {% include "analytics.html" %}
 
